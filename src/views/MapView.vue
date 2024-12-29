@@ -1,15 +1,18 @@
 <template>
 	<LayoutDefaut>
-		<div class="home">HomePage</div>
+		<div class="map-view">
+			<MapBlock />
+		</div>
 	</LayoutDefaut>
 </template>
 
 <script setup>
+import MapBlock from "@/components/MapView/MapBlock.vue";
 import LayoutDefaut from "@/layouts/layoutDefaut.vue";
 </script>
 
 <style scoped lang="scss">
-.home {
+.map-view {
 	font-family: var(--jakarta);
 }
 </style>
