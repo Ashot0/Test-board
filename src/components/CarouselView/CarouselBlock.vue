@@ -14,10 +14,20 @@
 			</div>
 		</div>
 		<div class="carousel-block__buttons">
-			<button @click="prevItem" type="button" class="carousel-block__button">
+			<button
+				:disabled="props.activeItem === 0"
+				@click="prevItem"
+				type="button"
+				class="carousel-block__button"
+			>
 				Prev
 			</button>
-			<button @click="nextItem" type="button" class="carousel-block__button">
+			<button
+				:disabled="props.activeItem === props.items.length - 1"
+				@click="nextItem"
+				type="button"
+				class="carousel-block__button"
+			>
 				Next
 			</button>
 		</div>
@@ -113,6 +123,11 @@ const nextItem = () => {
 		}
 		&:active {
 			opacity: 0.7;
+		}
+		&:disabled {
+			background-color: var(--grey-color);
+			opacity: 0.9;
+			cursor: default;
 		}
 	}
 	@media (max-width: 1919px) {

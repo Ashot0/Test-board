@@ -9,8 +9,12 @@ const messages = {
 		Map: "Map",
 		backgroundPinText:
 			"All pins are loaded when the page loads. Click the 'Fetch Pins' button to manually update them from the server. If you attempt to delete pins not found on the server, synchronization will occur 🧐",
+		carouselTextTitle1: "Swiper slider",
+		carouselTextTitle2: "Handwritten carousel",
 		carouselText:
 			"Each slider is a separate CarouselBlock component that contains data for the slider. The carousel is implemented so that all CarouselBlocks can pass the active slide variable and track its changes, enabling synchronization 🧐",
+		carouselText2:
+			"Sliders are implemented using the Swiper.js library and are interconnected with each other 🧐",
 		formBlockFirstName: "Firstname",
 		formBlockLastName: "Lastname",
 		formBlockPhone: "Phone number",
@@ -46,6 +50,7 @@ const messages = {
 		},
 		mapBlock:
 			"This section is temporarily unavailable due to a missing API key 🥲",
+		submit: "submit",
 	},
 	ru: {
 		Home: "Главная",
@@ -55,8 +60,12 @@ const messages = {
 		Map: "Карта",
 		backgroundPinText:
 			"Все пины загружаються при загрузке страницы, нажмите кнопку 'fetch pins' для ручного обновления с сервера. При попытке удаления пинов отсутствующих на сервере произойдёт синхронизация 🧐",
+		carouselTextTitle1: "Swiper карусель",
+		carouselTextTitle2: "Рукописная карусель",
 		carouselText:
 			"Каждый слайдер это отдельный компонент CarouselBlock с прокинутыми данными для слайдера. Сама связанная карусель реализуеться засчёт того что у всех CarouselBlock есть возможность прокинуть переменную активного слайда и отслеживать её изменение по которому отрабатывать синхронизацию 🧐",
+		carouselText2:
+			"Слайдеры реализованны при помощи библиотеки Swiper.js и взаимно связанны друг с другом 🧐",
 		formBlockFirstName: "Имя",
 		formBlockLastName: "Фамилия",
 		formBlockPhone: "Номер телефона",
@@ -92,6 +101,7 @@ const messages = {
 			messageRequired: "Нельзя отправить пустое сообщение",
 		},
 		mapBlock: "Раздел временно не доступен в связи с отсутствием API ключа 🥲",
+		submit: "Отправить",
 	},
 	ua: {
 		Home: "Головна",
@@ -101,8 +111,12 @@ const messages = {
 		Map: "Карта",
 		backgroundPinText:
 			"Усі піни завантажуються при завантаженні сторінки, натисніть кнопку 'fetch pins' для ручного оновлення із сервера. При спробі видалення пінів відсутніх на сервері відбудеться синхронізація 🧐",
+		carouselTextTitle1: "Swiper карусель",
+		carouselTextTitle2: "Рукописна карусель",
 		carouselText:
 			"Кожен слайдер це окремий компонент CarouselBlock із прокинутими даними для слайдера. Сама зв'язана карусель реалізується за рахунок того, що у всіх CarouselBlock є можливість прокинути змінну активного слайда і відстежувати її зміну, за якою відпрацьовувати синхронізацію 🧐",
+		carouselText2:
+			"Слайдери реалізовані за допомогою бібліотеки Swiper.js та взаємно пов'язані один з одним 🧐",
 		formBlockFirstName: "Ім'я",
 		formBlockLastName: "Прізвище",
 		formBlockPhone: "Номер телефона",
@@ -136,6 +150,7 @@ const messages = {
 			messageRequired: "Ви не можете відправити порожнє повідомлення",
 		},
 		mapBlock: "Розділ тимчасово не доступний через відсутність API ключа 🥲",
+		submit: "Надiслати",
 	},
 };
 

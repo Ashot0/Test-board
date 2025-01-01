@@ -111,12 +111,12 @@
 					id="accept1"
 				/>
 
-				<div class="form-block__label">
+				<label class="form-block__label" for="accept1">
 					<p class="form-block__error" v-if="errors.accept1">
 						{{ errors.accept1 }}
 					</p>
 					{{ t("formBlockAccept1") }}
-				</div>
+				</label>
 			</div>
 			<div
 				:class="{ invalid: errors.accept2 }"
@@ -130,12 +130,12 @@
 					id="accept2"
 				/>
 
-				<div class="form-block__label">
+				<label class="form-block__label" for="accept2">
 					<p class="form-block__error" v-if="errors.accept2">
 						{{ errors.accept2 }}
 					</p>
 					{{ t("formBlockAccept2") }}
-				</div>
+				</label>
 			</div>
 			<div
 				:class="{ invalid: errors.accept3 }"
@@ -149,12 +149,12 @@
 					id="accept3"
 				/>
 
-				<div class="form-block__label">
+				<label class="form-block__label" for="accept3">
 					<p class="form-block__error" v-if="errors.accept3">
 						{{ errors.accept3 }}
 					</p>
 					{{ t("formBlockAccept3") }}
-				</div>
+				</label>
 			</div>
 			<div
 				:class="{ invalid: errors.accept4 }"
@@ -168,12 +168,12 @@
 					id="accept4"
 				/>
 
-				<div class="form-block__label">
+				<label class="form-block__label" for="accept4">
 					<p class="form-block__error" v-if="errors.accept4">
 						{{ errors.accept4 }}
 					</p>
 					{{ t("formBlockAccept4") }}
-				</div>
+				</label>
 			</div>
 			<div
 				:class="{ invalid: errors.accept5 }"
@@ -187,12 +187,12 @@
 					id="accept5"
 				/>
 
-				<div class="form-block__label">
+				<label class="form-block__label" for="accept5">
 					<p class="form-block__error" v-if="errors.accept5">
 						{{ errors.accept5 }}
 					</p>
 					{{ t("formBlockAccept5") }}
-				</div>
+				</label>
 			</div>
 			<div
 				:class="{ invalid: errors.message }"
@@ -210,7 +210,9 @@
 					cols="30"
 					rows="10"
 				></textarea>
-				<button class="form-block__submit-btn" type="submit">submit</button>
+				<button class="form-block__submit-btn" type="submit">
+					{{ t("submit") }}
+				</button>
 			</div>
 		</form>
 		<li v-if="complete" class="form-block__data-block">
