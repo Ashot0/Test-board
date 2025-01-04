@@ -14,5 +14,7 @@ import LayoutDefaut from "@/layouts/layoutDefaut.vue";
 <style scoped lang="scss">
 .map-view {
 	font-family: var(--jakarta);
+	height: 100%;
+	position: relative;
 }
 </style>

@@ -5,12 +5,12 @@
 				:class="{ invalid: errors.firstName }"
 				class="form-block__item form-block__first-name"
 			>
-				<p class="form-block__label">
+				<label class="form-block__label" for="first-name">
 					{{ t("formBlockFirstName") }}
-				</p>
-				<span class="form-block__error" v-if="errors.firstName">{{
-					errors.firstName
-				}}</span>
+					<p class="form-block__error" v-if="errors.firstName">
+						{{ errors.firstName }}
+					</p>
+				</label>
 				<input
 					class="form-block__input form-block__input_text"
 					v-model="form.firstName"
@@ -23,10 +23,12 @@
 				:class="{ invalid: errors.lastName }"
 				class="form-block__item form-block__last-name"
 			>
-				<p class="form-block__label">{{ t("formBlockLastName") }}</p>
-				<span class="form-block__error" v-if="errors.lastName">{{
-					errors.lastName
-				}}</span>
+				<label class="form-block__label" for="last-name"
+					>{{ t("formBlockLastName") }}
+					<p class="form-block__error" v-if="errors.lastName">
+						{{ errors.lastName }}
+					</p></label
+				>
 				<input
 					class="form-block__input form-block__input_text"
 					v-model="form.lastName"
@@ -39,10 +41,12 @@
 				:class="{ invalid: errors.phone }"
 				class="form-block__item form-block__phone"
 			>
-				<p class="form-block__label">{{ t("formBlockPhone") }}</p>
-				<span class="form-block__error" v-if="errors.phone">{{
-					errors.phone
-				}}</span>
+				<label class="form-block__label" for="phone"
+					>{{ t("formBlockPhone") }}
+					<p class="form-block__error" v-if="errors.phone">
+						{{ errors.phone }}
+					</p></label
+				>
 				<input
 					class="form-block__input form-block__input_text"
 					v-model="form.phone"
@@ -55,10 +59,12 @@
 				:class="{ invalid: errors.name }"
 				class="form-block__item form-block__name"
 			>
-				<p class="form-block__label">{{ t("formBlockName") }}</p>
-				<span class="form-block__error" v-if="errors.name">{{
-					errors.name
-				}}</span>
+				<label class="form-block__label" for="name"
+					>{{ t("formBlockName") }}
+					<p class="form-block__error" v-if="errors.name">
+						{{ errors.name }}
+					</p>
+				</label>
 				<input
 					class="form-block__input form-block__input_text"
 					v-model="form.name"
@@ -71,10 +77,12 @@
 				:class="{ invalid: errors.email }"
 				class="form-block__item form-block__email"
 			>
-				<p class="form-block__label">{{ t("formBlockEmail") }}</p>
-				<span class="form-block__error" v-if="errors.email">{{
-					errors.email
-				}}</span>
+				<label class="form-block__label" for="email"
+					>{{ t("formBlockEmail") }}
+					<p class="form-block__error" v-if="errors.email">
+						{{ errors.email }}
+					</p>
+				</label>
 				<input
 					class="form-block__input form-block__input_text"
 					v-model="form.email"
@@ -87,10 +95,12 @@
 				:class="{ invalid: errors.password }"
 				class="form-block__item form-block__password"
 			>
-				<p class="form-block__label">{{ t("formBlockPassword") }}</p>
-				<span class="form-block__error" v-if="errors.password">{{
-					errors.password
-				}}</span>
+				<label class="form-block__label" for="password"
+					>{{ t("formBlockPassword") }}
+					<p class="form-block__error" v-if="errors.password">
+						{{ errors.password }}
+					</p>
+				</label>
 				<input
 					class="form-block__input form-block__input_text"
 					v-model="form.password"
@@ -198,10 +208,12 @@
 				:class="{ invalid: errors.message }"
 				class="form-block__item form-block__message"
 			>
-				<p class="form-block__label">{{ t("formBlockMessage") }}</p>
-				<span class="form-block__error" v-if="errors.message">{{
-					errors.message
-				}}</span>
+				<label class="form-block__label" for="message"
+					>{{ t("formBlockMessage") }}
+					<p class="form-block__error" v-if="errors.message">
+						{{ errors.message }}
+					</p>
+				</label>
 				<textarea
 					class="form-block__input form-block__input_textarea"
 					v-model="form.message"
@@ -426,6 +438,7 @@ const handleSubmit = () => {
 		width: 100%;
 	}
 	&__label {
+		display: block;
 		margin-bottom: 2.5px;
 		&:focus {
 			font-weight: bold;

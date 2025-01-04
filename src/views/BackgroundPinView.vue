@@ -17,13 +17,6 @@
 			</div>
 		</div>
 		<div class="background-pin__info-block">
-			<button
-				class="background-pin__fetch-btn"
-				@click="pinStore.fetchPins()"
-				type="button"
-			>
-				fetch pins
-			</button>
 			<p class="background-pin__text">
 				{{ t("backgroundPinText") }}
 			</p>
@@ -57,6 +50,9 @@ const deletePin = (event, pin) => {
 
 onMounted(() => {
 	pinStore.fetchPins();
+	setInterval(() => {
+		pinStore.fetchPins();
+	}, 3000);
 });
 </script>
 <style scoped lang="scss">
@@ -94,6 +90,7 @@ onMounted(() => {
 		display: flex;
 		gap: 20px;
 		align-items: center;
+		justify-content: center;
 		width: 100%;
 		margin: 0 0 50px 0;
 	}
@@ -114,6 +111,7 @@ onMounted(() => {
 	}
 
 	&__text {
+		text-align: center;
 		max-width: 700px;
 		@media (min-width: 1919px) {
 			font-size: 24px;

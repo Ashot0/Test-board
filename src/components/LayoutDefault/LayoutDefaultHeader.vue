@@ -109,7 +109,13 @@ const burgerClose = () => {
 		border-radius: 50%;
 		width: 50px;
 		height: 50px;
+		object-fit: cover;
 		background-color: var(--grey-color);
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
 		@media (min-width: 1023px) {
 			display: none;
 		}

@@ -12,13 +12,24 @@
 						:modules="modules"
 						class="mySwiper"
 						@swiper="setFirstSwiper"
-						:controller="{ control: secondSwiper }"
+						:controller="{
+							control: checkControll(secondSwiper),
+						}"
 					>
 						<swiper-slide :key="item.name" v-for="item in itemsCapibara">
 							<img :src="item.img" />
 						</swiper-slide>
 					</swiper>
 				</div>
+				<button class="carousel__lock" @click="activateControl" type="button">
+					<img
+						v-if="controBull"
+						src="../assets/Icon/iconLock.png"
+						alt=""
+						srcset=""
+					/>
+					<img v-else src="../assets/Icon/iconUnlock.png" alt="" srcset="" />
+				</button>
 				<div class="carousel__slider">
 					<swiper
 						effect="cube"
@@ -28,7 +39,7 @@
 						:modules="modules"
 						class="mySwiper"
 						@swiper="setSecondSwiper"
-						:controller="{ control: firstSwiper }"
+						:controller="{ control: checkControll(firstSwiper) }"
 					>
 						<swiper-slide :key="item.name" v-for="item in itemsPanda">
 							<img :src="item.img" />
@@ -69,7 +80,7 @@
 </template>
 
 <script setup>
-import { ref, toRaw } from "vue";
+import { ref, toRaw, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import LayoutDefaut from "@/layouts/layoutDefaut.vue";
 import CarouselBlock from "@/components/CarouselView/CarouselBlock.vue";
@@ -82,6 +93,7 @@ import { EffectCube, Pagination, Controller } from "swiper/modules";
 
 const { t } = useI18n();
 const activeItem = ref(0);
+const controBull = ref(true);
 
 const cubeEffectOptions = {
 	shadow: true,
@@ -90,6 +102,19 @@ const cubeEffectOptions = {
 	shadowScale: 0.94,
 };
 const modules = [EffectCube, Pagination, Controller];
+
+const activateControl = () => {
+	controBull.value = !controBull.value;
+};
+
+const checkControll = (swiper) => (controBull.value ? swiper : null);
+
+watch(controBull, () => {
+	if (firstSwiper.value && secondSwiper.value) {
+		firstSwiper.value.controller.control = checkControll(secondSwiper.value);
+		secondSwiper.value.controller.control = checkControll(firstSwiper.value);
+	}
+});
 
 const firstSwiper = ref(null);
 const secondSwiper = ref(null);
@@ -125,7 +150,7 @@ const syncIndex = (index) => {
 		display: flex;
 		gap: 20px;
 		align-items: center;
-		justify-content: space-around;
+		justify-content: space-evenly;
 		width: 100%;
 		padding: 0 20px 20px 20px;
 		@media (max-width: 1023px) {
@@ -133,9 +158,9 @@ const syncIndex = (index) => {
 		}
 	}
 	&__slider {
-		width: 45%;
+		width: 40%;
 		@media (max-width: 1023px) {
-			width: 95%;
+			width: 90%;
 		}
 		.swiper {
 			aspect-ratio: 1 1;
@@ -161,6 +186,11 @@ const syncIndex = (index) => {
 			font-size: 24px;
 			max-width: 1200px;
 		}
+	}
+	&__lock {
+		background: none;
+		width: 100px;
+		aspect-ratio: 1 1;
 	}
 }
 </style>
