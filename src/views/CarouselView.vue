@@ -80,7 +80,7 @@
 </template>
 
 <script setup>
-import { ref, toRaw, watch } from "vue";
+import { ref, toRaw } from "vue";
 import { useI18n } from "vue-i18n";
 import LayoutDefaut from "@/layouts/layoutDefaut.vue";
 import CarouselBlock from "@/components/CarouselView/CarouselBlock.vue";
@@ -103,18 +103,25 @@ const cubeEffectOptions = {
 };
 const modules = [EffectCube, Pagination, Controller];
 
-const activateControl = () => {
+const activateControl = async () => {
+	if (!controBull.value) {
+		if (firstSwiper.value && secondSwiper.value) {
+			const targetIndex = firstSwiper.value.activeIndex;
+			await secondSwiper.value.slideTo(targetIndex, 1000);
+		}
+	}
 	controBull.value = !controBull.value;
+
+	if (controBull.value && firstSwiper.value && secondSwiper.value) {
+		firstSwiper.value.controller.control = secondSwiper.value;
+		secondSwiper.value.controller.control = firstSwiper.value;
+	} else if (firstSwiper.value && secondSwiper.value) {
+		firstSwiper.value.controller.control = null;
+		secondSwiper.value.controller.control = null;
+	}
 };
 
 const checkControll = (swiper) => (controBull.value ? swiper : null);
-
-watch(controBull, () => {
-	if (firstSwiper.value && secondSwiper.value) {
-		firstSwiper.value.controller.control = checkControll(secondSwiper.value);
-		secondSwiper.value.controller.control = checkControll(firstSwiper.value);
-	}
-});
 
 const firstSwiper = ref(null);
 const secondSwiper = ref(null);
