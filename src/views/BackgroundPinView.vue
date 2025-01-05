@@ -1,6 +1,7 @@
 <template>
 	<LayoutDefaut>
-		<div @click="addPin($event)" class="background-pin">
+		<LoaderDefault @loaded="onImagesLoaded" />
+		<div v-show="!loader" @click="addPin($event)" class="background-pin">
 			<img
 				class="background-pin__image"
 				src="../assets/Images/BgPin.jpg"
@@ -16,7 +17,7 @@
 				📍
 			</div>
 		</div>
-		<div class="background-pin__info-block">
+		<div v-show="!loader" class="background-pin__info-block">
 			<p class="background-pin__text">
 				{{ t("backgroundPinText") }}
 			</p>
@@ -25,9 +26,10 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, ref } from "vue";
 import { usePinStore } from "@/stores/pinStore";
 import LayoutDefaut from "@/layouts/layoutDefaut.vue";
+import LoaderDefault from "@/components/LayoutDefault/LoaderDefault.vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
 
@@ -54,6 +56,11 @@ onMounted(() => {
 		pinStore.fetchPins();
 	}, 3000);
 });
+
+const loader = ref(true);
+const onImagesLoaded = () => {
+	loader.value = false;
+};
 </script>
 <style scoped lang="scss">
 .background-pin {

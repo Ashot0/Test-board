@@ -1,6 +1,7 @@
 <template>
 	<LayoutDefaut>
-		<div class="carousel">
+		<LoaderDefault @loaded="onImagesLoaded" />
+		<div v-show="!loader" class="carousel">
 			<h2 class="carousel__title">{{ t("carouselTextTitle1") }}</h2>
 			<div class="carousel__wrapper">
 				<div class="carousel__slider">
@@ -51,7 +52,7 @@
 				{{ t("carouselText2") }}
 			</p>
 		</div>
-		<div class="carousel">
+		<div v-show="!loader" class="carousel">
 			<h2 class="carousel__title">
 				{{ t("carouselTextTitle2") }}
 			</h2>
@@ -83,6 +84,7 @@
 import { ref, toRaw } from "vue";
 import { useI18n } from "vue-i18n";
 import LayoutDefaut from "@/layouts/layoutDefaut.vue";
+import LoaderDefault from "@/components/LayoutDefault/LoaderDefault.vue";
 import CarouselBlock from "@/components/CarouselView/CarouselBlock.vue";
 import { itemsCapibara, itemsPanda, itemsDog } from "@/data/carousel";
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -104,11 +106,9 @@ const cubeEffectOptions = {
 const modules = [EffectCube, Pagination, Controller];
 
 const activateControl = async () => {
-	if (!controBull.value) {
-		if (firstSwiper.value && secondSwiper.value) {
-			const targetIndex = firstSwiper.value.activeIndex;
-			await secondSwiper.value.slideTo(targetIndex, 1000);
-		}
+	if (!controBull.value && firstSwiper.value && secondSwiper.value) {
+		const targetIndex = firstSwiper.value.activeIndex;
+		await secondSwiper.value.slideTo(targetIndex, 500);
 	}
 	controBull.value = !controBull.value;
 
@@ -130,10 +130,16 @@ const setFirstSwiper = (swiper) => {
 };
 const setSecondSwiper = (swiper) => {
 	secondSwiper.value = toRaw(swiper);
+	console.log(swiper);
 };
 
 const syncIndex = (index) => {
 	activeItem.value = index;
+};
+
+const loader = ref(true);
+const onImagesLoaded = () => {
+	loader.value = false;
 };
 </script>
 
