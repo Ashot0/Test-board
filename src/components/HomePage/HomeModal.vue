@@ -1,7 +1,10 @@
 <template>
 	<div @click="emit('closeModal')" class="home-modal__wrapper">
 		<div @click.stop class="home-modal">
-			<p class="home-modal__text">{{ t("modalExample") }}</p>
+			<h2 class="home-modal__title">{{ text }}</h2>
+			<p class="home-modal__text">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, nostrum!
+			</p>
 			<div class="home-modal__btns">
 				<button
 					class="home-modal__button"
@@ -19,9 +22,17 @@
 </template>
 
 <script setup>
-import { defineEmits } from "vue";
+import { defineEmits, defineProps, computed } from "vue";
 import { useI18n } from "vue-i18n";
 const { t } = useI18n();
+
+const props = defineProps({
+	text: String,
+	title: String,
+});
+
+const text = computed(() => props.text || t("modalExample"));
+
 const emit = defineEmits(["closeModal"]);
 const chooseContinue = () => {
 	console.log("Continue");
@@ -35,14 +46,17 @@ const chooseCancel = () => {
 
 <style lang="scss" scoped>
 .home-modal {
-	width: 250px;
-	height: 150px;
-	background-color: white;
-	border-radius: 20px;
-	padding: 20px;
 	display: flex;
+	padding: 20px;
+	margin-top: 0.5rem;
 	flex-direction: column;
+	border-radius: 0.5rem;
+	border-width: 1px;
+	max-width: 36rem;
+	background-color: #ffffff;
 	justify-content: space-between;
+	gap: 1rem;
+	border: 1px solid black;
 	&__wrapper {
 		z-index: 60;
 		position: fixed;
@@ -55,16 +69,16 @@ const chooseCancel = () => {
 		align-items: center;
 		justify-content: center;
 	}
-
-	&__text {
-		text-align: center;
+	&__title {
 		font-size: 1.5em;
 		font-weight: normal;
+	}
+	&__text {
 	}
 
 	&__btns {
 		display: flex;
-		justify-content: center;
+		justify-content: flex-end;
 		align-items: center;
 		gap: 20px;
 	}

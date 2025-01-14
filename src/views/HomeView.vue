@@ -3,10 +3,21 @@
 		<LoaderDefault @loaded="onImagesLoaded" />
 		<div v-show="!loader" class="home">
 			<div class="home__block">
-				<HomeModal v-if="openCloseModal" @close-modal="openCloseModalFunc" />
+				<HomeModal
+					v-if="openCloseModal"
+					@close-modal="openCloseModalFunc"
+					:text="null"
+					:title="null"
+				/>
 				<button class="home__button" type="button" @click="openCloseModalFunc">
 					{{ t("openModal") }}
 				</button>
+			</div>
+			<div class="home__block">
+				<button type="button" @click="openCreateNewFolder">
+					Create new folder
+				</button>
+				<HomeModalLib />
 			</div>
 			<div class="home__block">
 				<HomePopup v-if="openClosePopup" @close-popup="openClosePopupFunc" />
@@ -16,6 +27,9 @@
 			</div>
 			<div class="home__block">
 				<HomeDropdown />
+			</div>
+			<div class="home__block">
+				<HomeDropdownLib />
 			</div>
 			<div class="home__block">
 				<HomeProgressBar />
@@ -28,6 +42,7 @@
 </template>
 
 <script setup>
+import { useModal } from "vue-final-modal";
 import HomeModal from "@/components/HomePage/HomeModal.vue";
 import { ref } from "vue";
 import LoaderDefault from "@/components/LayoutDefault/LoaderDefault.vue";
@@ -37,6 +52,8 @@ import HomeDropdown from "@/components/HomePage/HomeDropdown.vue";
 import { useI18n } from "vue-i18n";
 import HomeProgressBar from "@/components/HomePage/HomeProgressBar.vue";
 import HomeBoobleSort from "@/components/HomePage/HomeBoobleSort.vue";
+import HomeModalLib from "@/components/HomePage/HomeModalLib.vue";
+import HomeDropdownLib from "@/components/HomePage/HomeDropdownLib.vue";
 const { t } = useI18n();
 
 const loader = ref(true);
@@ -48,6 +65,14 @@ const openCloseModal = ref(false);
 const openCloseModalFunc = () => {
 	openCloseModal.value = !openCloseModal.value;
 };
+const { open: openCreateNewFolder, close: closeCreateNewFolder } = useModal({
+	component: HomeModalLib,
+	attrs: {
+		onCreated() {
+			closeCreateNewFolder();
+		},
+	},
+});
 
 const openClosePopup = ref(false);
 const openClosePopupFunc = () => {
@@ -64,7 +89,7 @@ const openClosePopupFunc = () => {
 	position: relative;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	grid-auto-rows: minmax(fit-content, 300px);
+	grid-auto-rows: 200px;
 	gap: 20px;
 	align-items: center;
 	justify-items: center;
