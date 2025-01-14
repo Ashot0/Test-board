@@ -17,6 +17,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["loaded"]);
+
 const waitForImagesToLoad = (selector) => {
 	return new Promise((resolve) => {
 		const images = document.querySelectorAll(selector);
@@ -40,7 +41,9 @@ const waitForImagesToLoad = (selector) => {
 
 onMounted(async () => {
 	await waitForImagesToLoad(props.selector);
+
 	isVisible.value = false;
+
 	emit("loaded");
 });
 </script>
@@ -60,6 +63,7 @@ onMounted(async () => {
 		calc(-0.707 * var(--d)) calc(-0.707 * var(--d)) 0 5px,
 		calc(0 * var(--d)) calc(-1 * var(--d)) 0 6px;
 	animation: s7 1s infinite steps(8);
+
 	&__wrapper {
 		width: 100%;
 		height: 100%;

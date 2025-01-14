@@ -1,7 +1,7 @@
 <template>
 	<LayoutDefaut>
 		<LoaderDefault @loaded="onImagesLoaded" />
-		<div v-show="!loader" @click="addPin($event)" class="background-pin">
+		<div v-show="!loader" @click="addPin" class="background-pin">
 			<img
 				class="background-pin__image"
 				src="../assets/Images/BgPin.jpg"
@@ -10,7 +10,7 @@
 			<div
 				v-for="(pin, index) in pinStore.pins"
 				:key="index"
-				@click="deletePin($event, pin)"
+				@click="(event) => deletePin(event, pin)"
 				class="background-pin__pin"
 				:style="{ top: `${pin.pinY}%`, left: `${pin.pinX}%` }"
 			>
@@ -31,9 +31,16 @@ import { usePinStore } from "@/stores/pinStore";
 import LayoutDefaut from "@/layouts/layoutDefaut.vue";
 import LoaderDefault from "@/components/LayoutDefault/LoaderDefault.vue";
 import { useI18n } from "vue-i18n";
-const { t } = useI18n();
 
+const { t } = useI18n();
 const pinStore = usePinStore();
+
+const loader = ref(true);
+
+const onImagesLoaded = () => {
+	loader.value = false;
+};
+
 function addPin(event) {
 	event.stopPropagation();
 	const container = event.currentTarget;
@@ -45,48 +52,39 @@ function addPin(event) {
 	pinStore.addPin(x, y);
 }
 
-const deletePin = (event, pin) => {
+function deletePin(event, pin) {
 	event.stopPropagation();
 	pinStore.deletePin(pin.id);
-};
+}
 
 onMounted(() => {
 	pinStore.fetchPins();
-	setInterval(() => {
-		pinStore.fetchPins();
-	}, 3000);
+	setInterval(pinStore.fetchPins, 3000);
 });
-
-const loader = ref(true);
-const onImagesLoaded = () => {
-	loader.value = false;
-};
 </script>
+
 <style scoped lang="scss">
 .background-pin {
 	font-family: var(--jakarta);
 	margin: 20px 0;
 	position: relative;
 	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
+	user-select: none;
+
 	&__image {
 		pointer-events: none;
 		width: 100%;
 		border-radius: 20px;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
+		user-select: none;
 	}
+
 	&__pin {
 		position: absolute;
 		transform: translate(-50%, -100%);
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
+		user-select: none;
 		height: 24px;
 		font-size: 24px;
+
 		@media (max-width: 1023px) {
 			height: 12px;
 			font-size: 12px;
@@ -99,27 +97,13 @@ const onImagesLoaded = () => {
 		align-items: center;
 		justify-content: center;
 		width: 100%;
-		margin: 0 0 50px 0;
-	}
-
-	&__fetch-btn {
-		background-color: var(--red-color);
-		padding: 20px;
-		border-radius: 20px;
-		color: white;
-		font-weight: bold;
-		text-transform: uppercase;
-		&:hover {
-			opacity: 0.9;
-		}
-		&:active {
-			opacity: 0.7;
-		}
+		margin-bottom: 50px;
 	}
 
 	&__text {
 		text-align: center;
 		max-width: 700px;
+
 		@media (min-width: 1919px) {
 			font-size: 24px;
 			max-width: 1200px;

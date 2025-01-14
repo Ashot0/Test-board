@@ -13,6 +13,7 @@
 				<img class="carousel-block__image" :src="item.img" alt="" srcset="" />
 			</div>
 		</div>
+
 		<div class="carousel-block__buttons">
 			<button
 				:disabled="props.activeItem === 0"
@@ -89,15 +90,18 @@ const nextItem = () => {
 		max-width: 100vh;
 		height: 600px;
 		position: relative;
+
 		&_active {
 			width: 100%;
 			transition: all 0.7s;
 		}
+
 		&_unactive {
 			width: 0%;
 			transition: all 0.7s;
 		}
 	}
+
 	&__image {
 		display: block;
 		width: 100%;
@@ -110,6 +114,7 @@ const nextItem = () => {
 		display: flex;
 		justify-content: space-evenly;
 	}
+
 	&__button {
 		padding: 10px 40px;
 		margin: 10px 0;
@@ -130,41 +135,50 @@ const nextItem = () => {
 			cursor: default;
 		}
 	}
+
 	@media (max-width: 1919px) {
 		width: 400px;
 		&__items {
 			max-width: 400px;
 		}
+
 		&__item {
 			max-width: 400px;
 			height: 400px;
 		}
 	}
+
 	@media (max-width: 1023px) {
 		width: 600px;
 		&__items {
 			max-width: 600px;
 		}
+
 		&__item {
 			max-width: 600px;
 			height: 600px;
 		}
 	}
+
 	@media (max-width: 640px) {
 		width: 400px;
 		&__items {
 			max-width: 400px;
 		}
+
 		&__item {
 			max-width: 400px;
 			height: 400px;
 		}
 	}
+
 	@media (max-width: 480px) {
 		width: 250px;
+
 		&__items {
 			max-width: 250px;
 		}
+
 		&__item {
 			max-width: 250px;
 			height: 250px;

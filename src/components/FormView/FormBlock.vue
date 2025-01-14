@@ -19,6 +19,7 @@
 					id="first-name"
 				/>
 			</div>
+
 			<div
 				:class="{ invalid: errors.lastName }"
 				class="form-block__item form-block__last-name"
@@ -27,8 +28,8 @@
 					>{{ t("formBlockLastName") }}
 					<p class="form-block__error" v-if="errors.lastName">
 						{{ errors.lastName }}
-					</p></label
-				>
+					</p>
+				</label>
 				<input
 					class="form-block__input form-block__input_text"
 					v-model="form.lastName"
@@ -37,6 +38,7 @@
 					id="last-name"
 				/>
 			</div>
+
 			<div
 				:class="{ invalid: errors.phone }"
 				class="form-block__item form-block__phone"
@@ -45,8 +47,8 @@
 					>{{ t("formBlockPhone") }}
 					<p class="form-block__error" v-if="errors.phone">
 						{{ errors.phone }}
-					</p></label
-				>
+					</p>
+				</label>
 				<input
 					class="form-block__input form-block__input_text"
 					v-model="form.phone"
@@ -55,6 +57,7 @@
 					id="phone"
 				/>
 			</div>
+
 			<div
 				:class="{ invalid: errors.name }"
 				class="form-block__item form-block__name"
@@ -73,6 +76,7 @@
 					id="name"
 				/>
 			</div>
+
 			<div
 				:class="{ invalid: errors.email }"
 				class="form-block__item form-block__email"
@@ -83,6 +87,7 @@
 						{{ errors.email }}
 					</p>
 				</label>
+
 				<input
 					class="form-block__input form-block__input_text"
 					v-model="form.email"
@@ -91,6 +96,7 @@
 					id="email"
 				/>
 			</div>
+
 			<div
 				:class="{ invalid: errors.password }"
 				class="form-block__item form-block__password"
@@ -109,6 +115,7 @@
 					id="password"
 				/>
 			</div>
+
 			<div
 				:class="{ invalid: errors.accept1 }"
 				class="form-block__item form-block__accept"
@@ -120,7 +127,6 @@
 					name="accept1"
 					id="accept1"
 				/>
-
 				<label class="form-block__label" for="accept1">
 					<p class="form-block__error" v-if="errors.accept1">
 						{{ errors.accept1 }}
@@ -128,6 +134,7 @@
 					{{ t("formBlockAccept1") }}
 				</label>
 			</div>
+
 			<div
 				:class="{ invalid: errors.accept2 }"
 				class="form-block__item form-block__accept"
@@ -139,7 +146,6 @@
 					name="accept2"
 					id="accept2"
 				/>
-
 				<label class="form-block__label" for="accept2">
 					<p class="form-block__error" v-if="errors.accept2">
 						{{ errors.accept2 }}
@@ -147,6 +153,7 @@
 					{{ t("formBlockAccept2") }}
 				</label>
 			</div>
+
 			<div
 				:class="{ invalid: errors.accept3 }"
 				class="form-block__item form-block__accept"
@@ -158,7 +165,6 @@
 					name="accept3"
 					id="accept3"
 				/>
-
 				<label class="form-block__label" for="accept3">
 					<p class="form-block__error" v-if="errors.accept3">
 						{{ errors.accept3 }}
@@ -166,6 +172,7 @@
 					{{ t("formBlockAccept3") }}
 				</label>
 			</div>
+
 			<div
 				:class="{ invalid: errors.accept4 }"
 				class="form-block__item form-block__accept"
@@ -177,7 +184,6 @@
 					name="accept4"
 					id="accept4"
 				/>
-
 				<label class="form-block__label" for="accept4">
 					<p class="form-block__error" v-if="errors.accept4">
 						{{ errors.accept4 }}
@@ -185,6 +191,7 @@
 					{{ t("formBlockAccept4") }}
 				</label>
 			</div>
+
 			<div
 				:class="{ invalid: errors.accept5 }"
 				class="form-block__item form-block__accept"
@@ -196,7 +203,6 @@
 					name="accept5"
 					id="accept5"
 				/>
-
 				<label class="form-block__label" for="accept5">
 					<p class="form-block__error" v-if="errors.accept5">
 						{{ errors.accept5 }}
@@ -204,6 +210,7 @@
 					{{ t("formBlockAccept5") }}
 				</label>
 			</div>
+
 			<div
 				:class="{ invalid: errors.message }"
 				class="form-block__item form-block__message"
@@ -222,11 +229,13 @@
 					cols="30"
 					rows="10"
 				></textarea>
+
 				<button class="form-block__submit-btn" type="submit">
 					{{ t("submit") }}
 				</button>
 			</div>
 		</form>
+
 		<li v-if="complete" class="form-block__data-block">
 			<p>{{ t("formBlockFirstName") }} : {{ form.firstName }}</p>
 			<p>{{ t("formBlockLastName") }} : {{ form.lastName }}</p>
@@ -246,7 +255,9 @@
 
 <script setup>
 import { reactive, ref } from "vue";
+
 import { useI18n } from "vue-i18n";
+
 const { t } = useI18n();
 
 const complete = ref(false);
@@ -283,6 +294,7 @@ const errors = reactive({
 
 const validate = () => {
 	let IsValid = true;
+
 	const phoneRegex = /^\+?[1-9]\d{9,14}$/;
 	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 	const passwordRegex1 = /^(?=.*[a-z])(?=.*[A-Z])[A-Za-z\d@$!%*?&_-]{6,24}$/;
@@ -367,6 +379,7 @@ const validate = () => {
 	} else {
 		errors.accept2 = null;
 	}
+
 	if (!form.accept3) {
 		errors.accept3 = t("errors.acceptRequired");
 		IsValid = false;
@@ -405,7 +418,7 @@ const handleSubmit = () => {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .form-block {
 	display: flex;
 	flex-direction: row;
@@ -424,6 +437,7 @@ const handleSubmit = () => {
 	@media (max-width: 481px) {
 		width: 320px;
 	}
+
 	&__wrapper {
 		display: flex;
 		align-items: center;
@@ -434,9 +448,11 @@ const handleSubmit = () => {
 			flex-direction: column;
 		}
 	}
+
 	&__item {
 		width: 100%;
 	}
+
 	&__label {
 		display: block;
 		margin-bottom: 2.5px;
@@ -444,6 +460,7 @@ const handleSubmit = () => {
 			font-weight: bold;
 		}
 	}
+
 	&__input {
 		&_textarea,
 		&_text {
@@ -459,6 +476,7 @@ const handleSubmit = () => {
 				outline: none;
 			}
 		}
+
 		&_checkbox {
 			margin-right: 5px;
 			&:focus {
@@ -468,14 +486,17 @@ const handleSubmit = () => {
 			}
 		}
 	}
+
 	&__accept {
 		display: flex;
 		text-align: left;
 		font-size: 12px;
 	}
+
 	&__error {
 		color: var(--dark-red-color);
 	}
+
 	&__data-block {
 		display: flex;
 		flex-direction: column;
@@ -489,6 +510,7 @@ const handleSubmit = () => {
 			width: 320px;
 		}
 	}
+
 	&__submit-btn {
 		margin-top: 10px;
 		background-color: var(--red-color);

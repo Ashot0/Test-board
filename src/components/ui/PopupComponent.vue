@@ -1,7 +1,9 @@
 <template>
 	<div class="home-popup">
 		<p class="home-popup__title">{{ t("popupExample") }}</p>
+
 		<p class="home-popup__text">{{ props.text }}</p>
+
 		<button class="home-popup__button" type="button" @click="closePopup">
 			{{ t("close") }}
 		</button>
@@ -42,11 +44,13 @@ const closePopup = () => {
 	justify-content: space-around;
 	border: 1px solid black;
 	gap: 10px;
+
 	&__title {
 		text-align: center;
 		font-size: 1.5em;
 		font-weight: normal;
 	}
+
 	&__text {
 		text-align: center;
 		font-weight: normal;

@@ -9,9 +9,11 @@
 
 <script setup>
 import { ref } from "vue";
+
 import LoaderDefault from "@/components/LayoutDefault/LoaderDefault.vue";
 import FormBlock from "@/components/FormView/FormBlock.vue";
 import LayoutDefaut from "@/layouts/layoutDefaut.vue";
+
 const loader = ref(true);
 const onImagesLoaded = () => {
 	loader.value = false;

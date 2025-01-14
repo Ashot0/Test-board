@@ -4,6 +4,7 @@
 			<span v-if="dropdownOption">{{ dropdownOption }}</span>
 			<span v-else>{{ t("openDropdown") }}</span>
 		</button>
+
 		<template #popper>
 			<div class="home-dropdown__content">
 				<ul class="home-dropdown__list">
@@ -22,10 +23,11 @@
 </template>
 
 <script setup>
-// import { options } from "floating-vue";
 import { ref, defineProps } from "vue";
 import { useI18n } from "vue-i18n";
+
 const { t } = useI18n();
+
 const isDropdownOpen = ref(false);
 const dropdownOption = ref(null);
 

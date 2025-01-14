@@ -6,9 +6,11 @@
 		@update:model-value="(val) => emit('update:modelValue', val)"
 	>
 		<h1 class="home-modal-lib__title">{{ props.title }}</h1>
+
 		<p class="home-modal-lib__text">
 			{{ props.text }}
 		</p>
+
 		<div class="home-modal-lib__btns">
 			<button class="home-modal-lib__button" @click="confirm">OK</button>
 			<button class="home-modal-lib__button" @click="props.closeModal">
@@ -39,6 +41,7 @@ const confirm = () => {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+
 	&__content {
 		font-family: var(--jakarta);
 		display: flex;
@@ -53,16 +56,19 @@ const confirm = () => {
 		gap: 1px;
 		border: 1px solid black;
 	}
+
 	&__title {
 		font-size: 1.25rem;
 		line-height: 1.75rem;
 	}
+
 	&__btns {
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
 		gap: 20px;
 	}
+
 	&__button {
 		padding-left: 0.75rem;
 		padding-right: 0.75rem;

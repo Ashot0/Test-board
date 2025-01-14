@@ -2,7 +2,9 @@
 	<div @click="emit('closeModal')" class="home-modal__wrapper">
 		<div @click.stop class="home-modal">
 			<h2 class="home-modal__title">{{ title }}</h2>
+
 			<p class="home-modal__text">{{ props.text }}</p>
+
 			<div class="home-modal__btns">
 				<button
 					class="home-modal__button"
@@ -22,6 +24,7 @@
 <script setup>
 import { defineEmits, defineProps, computed } from "vue";
 import { useI18n } from "vue-i18n";
+
 const { t } = useI18n();
 
 const props = defineProps({
@@ -32,6 +35,7 @@ const props = defineProps({
 const title = computed(() => props.title || t("modalExample"));
 
 const emit = defineEmits(["closeModal", "confirm"]);
+
 const chooseContinue = () => {
 	emit("closeModal");
 	emit("confirm");
@@ -54,6 +58,7 @@ const chooseCancel = () => {
 	justify-content: space-between;
 	gap: 1rem;
 	border: 1px solid black;
+
 	&__wrapper {
 		z-index: 60;
 		position: fixed;
@@ -66,11 +71,13 @@ const chooseCancel = () => {
 		align-items: center;
 		justify-content: center;
 	}
+
 	&__title {
 		font-size: 1.5em;
 		font-weight: normal;
 		margin: 0;
 	}
+
 	&__text {
 	}
 

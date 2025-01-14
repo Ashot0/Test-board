@@ -1,10 +1,12 @@
 <template>
 	<div class="home-booble-sort">
 		<p class="home-booble-sort__title">{{ t("bubbleSort") }}</p>
+
 		<p class="home-booble-sort__text">
 			{{ t("sourceArray") }}:
 			<span class="home-booble-sort__text_numbers">{{ numbers }}</span>
 		</p>
+
 		<form @submit.prevent="addElement" class="home-booble-sort__form">
 			<input
 				v-model="inputElement"
@@ -15,9 +17,11 @@
 				{{ t("addElement") }}
 			</button>
 		</form>
+
 		<button class="home-booble-sort__button" @click="bubbleSort">
 			{{ t("sort") }}
 		</button>
+
 		<p class="home-booble-sort__text" v-show="sortedNumbers.length > 0">
 			{{ t("sortedArray") }}:
 			<span class="home-booble-sort__text_numbers">{{ sortedNumbers }}</span>
@@ -28,7 +32,9 @@
 <script setup>
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
+
 const { t } = useI18n();
+
 const numbers = ref([]);
 const sortedNumbers = ref([]);
 const inputElement = ref(null);
@@ -39,6 +45,7 @@ const addElement = () => {
 	}
 	inputElement.value = null;
 };
+
 const bubbleSort = () => {
 	const arr = [...numbers.value];
 	let n = arr.length;
@@ -71,11 +78,13 @@ const bubbleSort = () => {
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	max-width: 400px;
 	margin: 50px auto;
+
 	&__title {
 		font-size: 24px;
 		color: var(--light-gray-border);
 		text-align: center;
 	}
+
 	&__text {
 		padding: 5px;
 		display: flex;
@@ -92,12 +101,14 @@ const bubbleSort = () => {
 			margin-left: 10px;
 		}
 	}
+
 	&__form {
 		padding: 5px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
+
 	&__input {
 		flex: 1;
 		padding: 8px 12px;
@@ -111,6 +122,7 @@ const bubbleSort = () => {
 			border-color: var(--middle-light-red-color);
 		}
 	}
+
 	&__btn {
 		border-radius: 5px;
 		padding: 5px;
@@ -126,6 +138,7 @@ const bubbleSort = () => {
 			color: black;
 		}
 	}
+
 	&__button {
 		width: 100%;
 		padding: 10px 40px;

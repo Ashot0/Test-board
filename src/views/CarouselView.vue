@@ -52,6 +52,7 @@
 				{{ t("carouselText2") }}
 			</p>
 		</div>
+
 		<div v-show="!loader" class="carousel">
 			<h2 class="carousel__title">
 				{{ t("carouselTextTitle2") }}
@@ -83,27 +84,31 @@
 <script setup>
 import { ref, toRaw } from "vue";
 import { useI18n } from "vue-i18n";
+
 import LayoutDefaut from "@/layouts/layoutDefaut.vue";
 import LoaderDefault from "@/components/LayoutDefault/LoaderDefault.vue";
 import CarouselBlock from "@/components/CarouselView/CarouselBlock.vue";
+
 import { itemsCapibara, itemsPanda, itemsDog } from "@/data/carousel";
+
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { EffectCube, Pagination, Controller } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/effect-cube";
 import "swiper/css/pagination";
-import { EffectCube, Pagination, Controller } from "swiper/modules";
 
 const { t } = useI18n();
+
 const activeItem = ref(0);
 const controBull = ref(true);
 
+const modules = [EffectCube, Pagination, Controller];
 const cubeEffectOptions = {
 	shadow: true,
 	slideShadows: true,
 	shadowOffset: 20,
 	shadowScale: 0.94,
 };
-const modules = [EffectCube, Pagination, Controller];
 
 const activateControl = async () => {
 	if (!controBull.value && firstSwiper.value && secondSwiper.value) {
@@ -122,7 +127,6 @@ const activateControl = async () => {
 };
 
 const checkControll = (swiper) => (controBull.value ? swiper : null);
-
 const firstSwiper = ref(null);
 const secondSwiper = ref(null);
 const setFirstSwiper = (swiper) => {

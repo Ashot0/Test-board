@@ -1,6 +1,7 @@
 <template>
 	<header class="header">
 		<img class="header__logo" src="@/assets/logo.png" alt="" />
+
 		<nav class="header__navbar">
 			<router-link class="header__link" to="/">{{ t("Home") }}</router-link>
 			<router-link class="header__link" to="/bg-pin">{{
@@ -18,12 +19,15 @@
 			<button class="header__btn" @click="locale = 'en'" type="button">
 				EN
 			</button>
+
 			<button class="header__btn" @click="locale = 'ru'" type="button">
 				RU
 			</button>
+
 			<button class="header__btn" @click="locale = 'ua'" type="button">
 				UA
 			</button>
+
 			<button @click="burgerSwitch" class="header__burger-btn" type="button">
 				<img v-if="burgerMenu" src="@/assets/Icon/cross.png" alt="" srcset="" />
 				<img v-else src="@/assets/Icon/burger-menu.png" alt="" srcset="" />
@@ -35,13 +39,17 @@
 <script setup>
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
+
 import BurgerMenu from "./BurgerMenu.vue";
+
 const { t, locale } = useI18n();
+
 const burgerMenu = ref(false);
 
 const burgerSwitch = () => {
 	burgerMenu.value = !burgerMenu.value;
 };
+
 const burgerClose = () => {
 	burgerMenu.value = false;
 };
@@ -57,9 +65,11 @@ const burgerClose = () => {
 	display: flex;
 	align-items: center;
 	gap: 70px;
+
 	&__logo {
 		max-height: 35px;
 	}
+
 	&__navbar {
 		display: flex;
 		gap: 35px;
@@ -67,6 +77,7 @@ const burgerClose = () => {
 			display: none;
 		}
 	}
+
 	&__link {
 		font-weight: bold;
 		text-transform: uppercase;
@@ -76,12 +87,14 @@ const burgerClose = () => {
 			color: var(--red-color);
 		}
 	}
+
 	&__btns {
 		display: flex;
 		gap: 20px;
 		position: absolute;
 		right: 20px;
 	}
+
 	&__btn {
 		padding: 5px 10px;
 		margin: 10px 0;
@@ -96,6 +109,7 @@ const burgerClose = () => {
 			opacity: 0.7;
 		}
 	}
+
 	&__burger {
 		left: 0;
 		z-index: 7;
@@ -103,6 +117,7 @@ const burgerClose = () => {
 			display: none;
 		}
 	}
+
 	&__burger-btn {
 		position: relative;
 		z-index: 10;

@@ -8,6 +8,7 @@
 			>
 				{{ t("Home") }}
 			</button>
+
 			<button
 				@click="navigateAndClose('/bg-pin')"
 				:class="activeLink('/bg-pin') ? 'burger-menu__link_active' : ''"
@@ -15,6 +16,7 @@
 			>
 				{{ t("BgPin") }}
 			</button>
+
 			<button
 				@click="navigateAndClose('/carousel')"
 				:class="activeLink('/carousel') ? 'burger-menu__link_active' : ''"
@@ -22,6 +24,7 @@
 			>
 				{{ t("Carousel") }}
 			</button>
+
 			<button
 				@click="navigateAndClose('/form')"
 				:class="activeLink('/form') ? 'burger-menu__link_active' : ''"
@@ -29,6 +32,7 @@
 			>
 				{{ t("Form") }}
 			</button>
+
 			<button
 				@click="navigateAndClose('/map')"
 				:class="activeLink('/map') ? 'burger-menu__link_active' : ''"
@@ -43,15 +47,20 @@
 <script setup>
 import { useRouter, useRoute } from "vue-router";
 import { defineEmits } from "vue";
+
 import { useI18n } from "vue-i18n";
+
 const router = useRouter();
 const route = useRoute();
 const { t } = useI18n();
+
 const emit = defineEmits(["close"]);
+
 const navigateAndClose = async (path) => {
 	await router.push(path);
 	emit("close");
 };
+
 function activeLink(link) {
 	let activate = false;
 	if (link === route.path) {
@@ -68,6 +77,7 @@ function activeLink(link) {
 	height: 100vh;
 	top: 0;
 	background-color: rgba(0, 0, 0, 0.95);
+
 	&__navbar {
 		margin-top: 100px;
 		display: flex;
@@ -81,6 +91,7 @@ function activeLink(link) {
 		color: white;
 		background: none;
 		max-width: 100%;
+
 		&_active {
 			color: var(--light-pink-color);
 			filter: drop-shadow(0 0 5px var(--red-color));

@@ -3,12 +3,14 @@
 		<p class="progress-bar__text">
 			Условное указание числа заполненности прогресс бара от 0 до 300 :
 		</p>
+
 		<input
 			v-model="barNum"
 			class="progress-bar__input"
 			type="number"
 			@input="limitBar"
 		/>
+
 		<div class="progress-bar__bar-wrapper">
 			<div class="progress-bar__bar" :style="`width: ${barNum}px`"></div>
 		</div>
@@ -42,7 +44,6 @@ const limitBar = (event) => {
 	flex-direction: column;
 	align-items: center;
 	gap: 5px;
-
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -53,6 +54,7 @@ const limitBar = (event) => {
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 	max-width: 400px;
 	margin: 50px auto;
+
 	&__text {
 		max-width: 300px;
 		text-align: center;
@@ -74,6 +76,7 @@ const limitBar = (event) => {
 			border-color: var(--middle-light-red-color);
 		}
 	}
+
 	&__bar-wrapper {
 		width: 300px;
 		height: 20px;
@@ -81,6 +84,7 @@ const limitBar = (event) => {
 		border-radius: 8px;
 		border: 1px solid var(--dark-red-color);
 	}
+
 	&__bar {
 		border-radius: 8px;
 		max-width: 300px;
@@ -88,6 +92,7 @@ const limitBar = (event) => {
 		height: 20px;
 		background-color: var(--red-color);
 		filter: drop-shadow(0px 0px 20px var(--red-color));
+		transition: width 0.5s;
 	}
 }
 </style>
