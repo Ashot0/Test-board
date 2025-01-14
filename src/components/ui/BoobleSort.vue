@@ -92,11 +92,14 @@ const bubbleSort = () => {
 		justify-content: center;
 		border-radius: 4px;
 		max-height: 5rem;
-		overflow: auto;
 		border: 2px solid var(--in-color);
 		padding: 5px;
 		line-height: 1.5rem;
+		overflow: auto;
+
 		&_numbers {
+			display: block;
+			position: relative;
 			font-weight: 600;
 			margin-left: 10px;
 		}

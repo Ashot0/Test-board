@@ -1,8 +1,6 @@
 <template>
 	<div class="progress-bar">
-		<p class="progress-bar__text">
-			Условное указание числа заполненности прогресс бара от 0 до 300 :
-		</p>
+		<p class="progress-bar__text">{{ t("progressBarDesc") }} :</p>
 
 		<input
 			v-model="barNum"
@@ -19,6 +17,9 @@
 
 <script setup>
 import { ref, defineProps } from "vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n();
 
 const props = defineProps({
 	num: Number,

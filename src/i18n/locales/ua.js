@@ -58,6 +58,8 @@ const ua = {
 	sourceArray: "Початковий масив",
 	sort: "Відсортувати",
 	sortedArray: "Відсортований масив",
+	progressBarDesc:
+		"Умовна вказівка ​​числа заповненості прогрес бару від 0 до 300",
 };
 
 export default ua;

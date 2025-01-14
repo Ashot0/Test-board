@@ -49,7 +49,6 @@ const chooseCancel = () => {
 .home-modal {
 	display: flex;
 	padding: 20px;
-	margin-top: 0.5rem;
 	flex-direction: column;
 	border-radius: 0.5rem;
 	border-width: 1px;
@@ -58,7 +57,7 @@ const chooseCancel = () => {
 	justify-content: space-between;
 	gap: 1rem;
 	border: 1px solid black;
-
+	margin: 0.5rem 20px 0;
 	&__wrapper {
 		z-index: 60;
 		position: fixed;

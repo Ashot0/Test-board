@@ -61,6 +61,8 @@ const ru = {
 	sourceArray: "Исходный массив",
 	sort: "Отсортировать",
 	sortedArray: "Отсортированный массив",
+	progressBarDesc:
+		"Условное указание числа заполненности прогресс бара от 0 до 300",
 };
 
 export default ru;

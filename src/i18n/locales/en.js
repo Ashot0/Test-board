@@ -61,6 +61,8 @@ const en = {
 	sourceArray: "Source array",
 	sort: "Sort",
 	sortedArray: "Sorted array",
+	progressBarDesc:
+		"Conditional indication of the progress bar fill number from 0 to 300",
 };
 
 export default en;

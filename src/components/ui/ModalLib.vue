@@ -46,7 +46,7 @@ const confirm = () => {
 		font-family: var(--jakarta);
 		display: flex;
 		padding: 0 20px 20px;
-		margin-top: 0.5rem;
+		margin: 0.5rem 20px 0;
 		flex-direction: column;
 		border-radius: 0.5rem;
 		border-width: 1px;

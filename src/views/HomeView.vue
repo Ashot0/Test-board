@@ -141,7 +141,7 @@ const confirm = () => {
 	position: relative;
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	grid-auto-rows: 200px;
+	grid-auto-rows: minmax(225px, fit-content);
 	gap: 20px;
 	align-items: center;
 	justify-items: center;
