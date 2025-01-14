@@ -38,8 +38,7 @@ const ua = {
 		passwordTooShort: "Пароль повинен бути від 6 до 24 символів",
 		passwordMissingCase: "Пароль повинен містити великі та малі літери",
 		passwordMissingDigit: "Пароль має містити хоча б одну цифру",
-		passwordMissingSpecial:
-			"Пароль повинен містити спеціальні символи $!%*?&_-",
+		passwordMissingSpecial: "Пароль повинен містити спеціальні символи $!%*?&_",
 		passwordMissingSpecialsub:
 			"Пароль повинен містити спеціальні символи @$!%*?&_-",
 		acceptRequired: "Ви повинні встановити цей прапорець, щоб продовжити",
