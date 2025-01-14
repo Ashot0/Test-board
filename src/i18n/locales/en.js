@@ -41,7 +41,7 @@ const en = {
 			"Password must include both uppercase and lowercase letters",
 		passwordMissingDigit: "Password must include at least one number",
 		passwordMissingSpecial:
-			"Password must include at least one special character from @$!%*?&_-",
+			"Password must include at least one special character from $!%*?&_-",
 		passwordMissingSpecialsub:
 			"Password must include at least one special character from @$!%*?&_-",
 		acceptRequired: "You must check this box to continue",
