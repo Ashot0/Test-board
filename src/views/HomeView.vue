@@ -1,41 +1,62 @@
 <template>
 	<LayoutDefaut>
 		<LoaderDefault @loaded="onImagesLoaded" />
+
 		<div v-show="!loader" class="home">
+			<!-- Home Modal Block -->
 			<div class="home__block">
 				<HomeModal
 					v-if="openCloseModal"
 					@close-modal="openCloseModalFunc"
-					:text="null"
+					@confirm="confirm"
+					:text="loremText"
 					:title="null"
 				/>
-				<button class="home__button" type="button" @click="openCloseModalFunc">
+				<button
+					class="home__button ui-button"
+					type="button"
+					@click="openCloseModalFunc"
+				>
 					{{ t("openModal") }}
 				</button>
 			</div>
+
+			<!-- Modal Library Block -->
 			<div class="home__block">
-				<button type="button" @click="openCreateNewFolder">
-					Create new folder
+				<button class="ui-button" type="button" @click="openModalLib">
+					{{ t("openModal") }}
 				</button>
-				<HomeModalLib />
 			</div>
+
+			<!-- Popup Block -->
 			<div class="home__block">
-				<HomePopup v-if="openClosePopup" @close-popup="openClosePopupFunc" />
-				<button class="home__button" type="button" @click="openClosePopupFunc">
+				<PopupComponent
+					v-if="openClosePopup"
+					@close-popup="openClosePopupFunc"
+					:text="loremText"
+				/>
+				<button
+					class="home__button ui-button"
+					type="button"
+					@click="openClosePopupFunc"
+				>
 					{{ t("openPopup") }}
 				</button>
 			</div>
+
+			<!-- Dropdown Block -->
 			<div class="home__block">
-				<HomeDropdown />
+				<DropdownLib :dropdownOptions="dropdownOption" />
 			</div>
+
+			<!-- Progress Bar Block -->
 			<div class="home__block">
-				<HomeDropdownLib />
+				<ProgressBar :num="60" />
 			</div>
+
+			<!-- Bubble Sort Block -->
 			<div class="home__block">
-				<HomeProgressBar />
-			</div>
-			<div class="home__block">
-				<HomeBoobleSort />
+				<BoobleSort />
 			</div>
 		</div>
 	</LayoutDefaut>
@@ -43,40 +64,71 @@
 
 <script setup>
 import { useModal } from "vue-final-modal";
-import HomeModal from "@/components/HomePage/HomeModal.vue";
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
+
+// Components
+import HomeModal from "@/components/ui/ModalComponent.vue";
 import LoaderDefault from "@/components/LayoutDefault/LoaderDefault.vue";
 import LayoutDefaut from "@/layouts/layoutDefaut.vue";
-import HomePopup from "@/components/HomePage/HomePopup.vue";
-import HomeDropdown from "@/components/HomePage/HomeDropdown.vue";
-import { useI18n } from "vue-i18n";
-import HomeProgressBar from "@/components/HomePage/HomeProgressBar.vue";
-import HomeBoobleSort from "@/components/HomePage/HomeBoobleSort.vue";
-import HomeModalLib from "@/components/HomePage/HomeModalLib.vue";
-import HomeDropdownLib from "@/components/HomePage/HomeDropdownLib.vue";
+import PopupComponent from "@/components/ui/PopupComponent.vue";
+import ProgressBar from "@/components/ui/ProgressBar.vue";
+import BoobleSort from "@/components/ui/BoobleSort.vue";
+import ModalLib from "@/components/ui/ModalLib.vue";
+import DropdownLib from "@/components/ui/DropdownLib.vue";
+
 const { t } = useI18n();
 
+// State
 const loader = ref(true);
+const openCloseModal = ref(false);
+const openClosePopup = ref(false);
+const loremText =
+	"Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, nostrum!";
+
+// Dropdown Options
+const dropdownOption = [
+	{ name: t("option") + " 1", value: t("option") + " 1" },
+	{ name: t("option") + " 2", value: t("option") + " 2" },
+	{ name: t("option") + " 3", value: t("option") + " 3" },
+];
+
+// Methods
 const onImagesLoaded = () => {
 	loader.value = false;
 };
 
-const openCloseModal = ref(false);
 const openCloseModalFunc = () => {
 	openCloseModal.value = !openCloseModal.value;
 };
-const { open: openCreateNewFolder, close: closeCreateNewFolder } = useModal({
-	component: HomeModalLib,
-	attrs: {
-		onCreated() {
-			closeCreateNewFolder();
-		},
-	},
-});
 
-const openClosePopup = ref(false);
 const openClosePopupFunc = () => {
 	openClosePopup.value = !openClosePopup.value;
+};
+
+const openModalLib = () => {
+	const { open, close } = useModal({
+		component: ModalLib,
+		attrs: {
+			title: t("modalExample"),
+			text: loremText,
+			closeModal() {
+				close();
+			},
+			"onUpdate:modelValue": (val) => {
+				if (!val) close();
+			},
+			onConfirm: () => {
+				console.log("Confirmation action performed.");
+				close();
+			},
+		},
+	});
+	open();
+};
+
+const confirm = () => {
+	console.log("Confirmation action performed.");
 };
 </script>
 
@@ -93,34 +145,20 @@ const openClosePopupFunc = () => {
 	gap: 20px;
 	align-items: center;
 	justify-items: center;
+
 	@media (max-width: 1024px) {
 		grid-template-columns: repeat(2, 1fr);
 	}
+
 	@media (max-width: 640px) {
 		grid-template-columns: repeat(1, 1fr);
 	}
+
 	&__block {
 		position: relative;
 	}
+
 	&__button {
-		padding: 10px 40px;
-		margin: 10px 0;
-		border-radius: 20px;
-		background-color: var(--red-color);
-		color: white;
-		text-transform: uppercase;
-		font-weight: bold;
-		&:hover {
-			opacity: 0.9;
-		}
-		&:active {
-			opacity: 0.7;
-		}
-		&:disabled {
-			background-color: var(--grey-color);
-			opacity: 0.9;
-			cursor: default;
-		}
 	}
 }
 </style>

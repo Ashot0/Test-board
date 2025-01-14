@@ -1,10 +1,8 @@
 <template>
 	<div @click="emit('closeModal')" class="home-modal__wrapper">
 		<div @click.stop class="home-modal">
-			<h2 class="home-modal__title">{{ text }}</h2>
-			<p class="home-modal__text">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse, nostrum!
-			</p>
+			<h2 class="home-modal__title">{{ title }}</h2>
+			<p class="home-modal__text">{{ props.text }}</p>
 			<div class="home-modal__btns">
 				<button
 					class="home-modal__button"
@@ -31,15 +29,14 @@ const props = defineProps({
 	title: String,
 });
 
-const text = computed(() => props.text || t("modalExample"));
+const title = computed(() => props.title || t("modalExample"));
 
-const emit = defineEmits(["closeModal"]);
+const emit = defineEmits(["closeModal", "confirm"]);
 const chooseContinue = () => {
-	console.log("Continue");
 	emit("closeModal");
+	emit("confirm");
 };
 const chooseCancel = () => {
-	console.log("Cancel");
 	emit("closeModal");
 };
 </script>
@@ -72,6 +69,7 @@ const chooseCancel = () => {
 	&__title {
 		font-size: 1.5em;
 		font-weight: normal;
+		margin: 0;
 	}
 	&__text {
 	}

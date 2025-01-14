@@ -1,6 +1,7 @@
 <template>
 	<div class="home-popup">
-		<p class="home-popup__text">{{ t("popupExample") }}</p>
+		<p class="home-popup__title">{{ t("popupExample") }}</p>
+		<p class="home-popup__text">{{ props.text }}</p>
 		<button class="home-popup__button" type="button" @click="closePopup">
 			{{ t("close") }}
 		</button>
@@ -8,10 +9,15 @@
 </template>
 
 <script setup>
-import { defineEmits } from "vue";
+import { defineEmits, defineProps } from "vue";
 import { useI18n } from "vue-i18n";
+
 const { t } = useI18n();
 const emit = defineEmits(["closePopup"]);
+const props = defineProps({
+	text: String,
+});
+
 const closePopup = () => {
 	console.log("close");
 	emit("closePopup");
@@ -22,21 +28,27 @@ const closePopup = () => {
 .home-popup {
 	z-index: 50;
 	position: absolute;
-	top: 46px;
+	top: 50px;
 	transform: translate(-50%);
 	left: 50%;
 	width: 300px;
-	height: 250px;
+	min-height: 250px;
 	border-radius: 25px;
-	background-color: var(--light-pink-color);
+	background-color: white;
 	padding: 20px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-around;
-	&__text {
+	border: 1px solid black;
+	gap: 10px;
+	&__title {
 		text-align: center;
 		font-size: 1.5em;
+		font-weight: normal;
+	}
+	&__text {
+		text-align: center;
 		font-weight: normal;
 	}
 

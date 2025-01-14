@@ -1,0 +1,20 @@
+.ui-button {
+	padding: 10px 40px;
+	margin: 10px 0;
+	border-radius: 20px;
+	background-color: var(--red-color);
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+	&:hover {
+		opacity: 0.9;
+	}
+	&:active {
+		opacity: 0.7;
+	}
+	&:disabled {
+		background-color: var(--grey-color);
+		opacity: 0.9;
+		cursor: default;
+	}
+}
